@@ -63,6 +63,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
         if let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFInputableCell {
             cell.textField.becomeFirstResponder()
         } else if let cell = self.collectionView?.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFSubmitableCell {
+            self.view.endEditing(true)
             cell.submitButton.sendActions(for: .touchUpInside)
         } else {
             self.view.endEditing(true)
