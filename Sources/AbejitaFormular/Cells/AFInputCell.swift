@@ -47,6 +47,7 @@ final class AFInputCell: AFInputableCell {
             attributes: [.foregroundColor: appearance.textColor]
         )
         self.textField.backgroundColor = appearance.foregroundColor
+        self.textField.clearButtonMode = .always
         self.defaultSetup()
         self.setupToolBar()
     }
@@ -122,7 +123,9 @@ final class AFInputCell: AFInputableCell {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        _ = self.formularDelegate?.formular(focusNextControlAfter: self.formularElement!)
+        if let text = textField.text, text != "" {
+            self.formularDelegate?.formular(focusNextControlAfter: self.formularElement!)
+        }
         return true
     }
     

@@ -24,7 +24,6 @@ class AFSwitchCell: AFCell {
         let label = UILabel()
         label.text = ""
         label.numberOfLines = 0
-        label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,7 +73,6 @@ class AFSwitchCell: AFCell {
         self.checker.topAnchor.constraint(equalTo: self.topAnchor, constant: self.contentAnchors.top).isActive = true
         self.checker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.contentAnchors.left).isActive = true
         self.textLabel.topAnchor.constraint(equalTo: self.checker.topAnchor).isActive = true
-//        self.textLabel.heightAnchor.constraint(greaterThanOrEqualTo: self.checker.heightAnchor, multiplier: 1).isActive = true
         self.checker.trailingAnchor.constraint(equalTo: self.textLabel.leadingAnchor, constant: -self.contentAnchors.right).isActive = true
         self.textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.contentAnchors.right).isActive = true
         self.textLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.contentAnchors.bottom).isActive = true
