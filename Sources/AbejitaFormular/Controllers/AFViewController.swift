@@ -70,6 +70,10 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
         }
     }
     
+    open func formularPerformAction(withReuseIdentifer: String) {
+        //Should be overrided by inherited class
+    }
+    
     
     
     //MARK: - Formular Action Delegate

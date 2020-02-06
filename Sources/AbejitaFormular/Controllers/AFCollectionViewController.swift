@@ -78,6 +78,10 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         }
     }
     
+    open func formularPerformAction(withReuseIdentifer: String) {
+        //Should be overrided by inherited class
+    }
+    
     
     
     

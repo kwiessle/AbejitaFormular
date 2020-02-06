@@ -23,6 +23,7 @@ public protocol AFDataDelegate {
 
 public protocol AFEventDelegate {
     func formular(focusNextControlAfter element: AFElement)
+    func formularPerformAction(withReuseIdentifer identifier: String)
 }
 
 
