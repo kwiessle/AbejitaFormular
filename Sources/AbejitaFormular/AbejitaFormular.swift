@@ -6,16 +6,17 @@
 //  Copyright © 2019 Kiefer Wiessler. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //MARK: - Formular
 
 public protocol AbejitaFormular {
     // - Properties
+
     var title: String { get set }
     var elements: [AFElement] { get }
-    var isValid: Bool { get }
     // - Default Constructor
+
     init()
 }
 
@@ -32,7 +33,10 @@ public extension AbejitaFormular {
         return nextIndex < self.elements.count ? nextIndex : nil
     }
     
+    var isValid: Bool {
+        return true
+    }
     
-
+   
     
 }

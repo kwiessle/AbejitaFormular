@@ -26,13 +26,14 @@ public extension AFElementKind {
 public enum AFDefaultElementKind: AFElementKind {
     
     // - Elements cases
-    case header(title: String, alignment: NSTextAlignment, font: UIFont? = UIFont.systemFont(ofSize: 60, weight: .bold))
+    case header(title: String, alignment: NSTextAlignment, font: UIFont = UIFont.systemFont(ofSize: 60, weight: .bold))
     case input(placeholder: String, type: AFInputType)
-    case text(_ value: String, font: UIFont? = UIFont.systemFont(ofSize: 17))
-    case checkBox(text: String)
+    case text(_ value: String, font: UIFont = UIFont.systemFont(ofSize: 17))
+    case `switch`(text: String) 
     case submit(title: String)
     case image(_ image: UIImage?, height: CGFloat? = nil)
     case slider
+    case link(text: String, font: UIFont = UIFont.systemFont(ofSize: 17))
     
     
     // - Associated UICollectionViewCell
@@ -41,10 +42,11 @@ public enum AFDefaultElementKind: AFElementKind {
             case .header:       return AFHeaderCell.self
             case .input:        return AFInputCell.self
             case .text:         return AFTextCell.self
-            case .checkBox:     return AFSwitchCell.self
+            case .switch:       return AFSwitchCell.self
             case .submit:       return AFSubmitCell.self
             case .image:        return AFImageCell.self
             case .slider:       return AFSliderCell.self
+            case .link:         return AFLinkCell.self
         }
     }
     
@@ -68,15 +70,22 @@ public enum AFDefaultElementKind: AFElementKind {
                 else if let fnt = font as? T { return fnt }
                 else { return nil }
             
-            case .checkBox(let text):
-                return text as? T
+            case .switch(let text):
+                if let txt = text as? T { return txt }
+                else { return nil }
             
             case .submit(let title):
-                return title as? T
+                if let ttl = title as? T { return ttl }
+                else { return nil}
             
             case .image(let image, let height):
                 if let img = image as? T { return img }
                 else if let h = height as? T { return h }
+                else { return nil }
+            
+            case .link(let text, let font):
+                if let txt = text as? T { return txt }
+                else if let fnt = font as? T { return fnt }
                 else { return nil }
             
             default: return nil
