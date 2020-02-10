@@ -8,7 +8,7 @@
 import UIKit
 
 
-extension UIButton {
+public extension UIButton {
     func height(forConstrainedWidth width: CGFloat) -> CGFloat {
         guard let text = self.titleLabel?.text, let font = self.titleLabel?.font else { return 0 }
         return text.height(withConstrainedWidth: width, font: font)
