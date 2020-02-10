@@ -33,11 +33,11 @@ public enum AFInputType {
 
 
 public protocol AFInputableCellDelegate  {
-    var textField: UITextField! { get set }
+    var textField: UITextField! { get }
 }
 
 public protocol AFSubmitableCellDelegate {
-    var submitButton: UIButton! { get set }
+    var submitButton: UIButton! { get }
 }
 
 
