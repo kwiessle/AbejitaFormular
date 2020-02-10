@@ -13,8 +13,7 @@ public class AFElement: Equatable {
     
     public let kind: AFElementKind
     public let keyPath: AnyKeyPath?
-    internal var reuseIdentifier: String?
-    
+    public var reuseIdentifier: String?
     public var margin: UIEdgeInsets?
     
     public init (kind: AFElementKind, _ keyPath: AnyKeyPath? = nil) {
