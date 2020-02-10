@@ -60,9 +60,9 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
             self.dismissKeyboard()
             return
         }
-        if let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFInputableCell {
+        if let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFInputableCellDelegate {
             cell.textField.becomeFirstResponder()
-        } else if let cell = self.collectionView?.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFSubmitableCell {
+        } else if let cell = self.collectionView?.cellForItem(at: IndexPath(item: 0, section: nextIndex)) as? AFSubmitableCellDelegate {
             self.view.endEditing(true)
             cell.submitButton.sendActions(for: .touchUpInside)
         } else {
@@ -153,7 +153,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     public func formularFocusFirstResponder() {
         for index in 0..<self.formular.elements.count {
             let cell = self.collectionView?.cellForItem(at: IndexPath(item: 0, section: index))
-            if let inputCell = cell as? AFInputableCell {
+            if let inputCell = cell as? AFInputableCellDelegate {
                 inputCell.textField.becomeFirstResponder()
                 return
             }
