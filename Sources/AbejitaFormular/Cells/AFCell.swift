@@ -59,7 +59,7 @@ public extension AFInputableCellDelegate {
 }
 
 public protocol AFSubmitableCellDelegate {
-    var submitButton: UIButton! { get }
+    var button: UIButton! { get }
 }
 
 

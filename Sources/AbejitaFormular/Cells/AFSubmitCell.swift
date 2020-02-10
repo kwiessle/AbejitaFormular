@@ -16,7 +16,7 @@ final class AFSubmitCell: AFSubmitableCell {
     
     //MARK: - Outlet
     
-    var submitButton: UIButton! = {
+    var button: UIButton! = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .red
@@ -41,21 +41,21 @@ final class AFSubmitCell: AFSubmitableCell {
     func setup(element: AFElement, delegate: AFDelegate?, _ appearance: AFAppearance) {
         self.formularDelegate = delegate
         self.formularElement = element
-        self.submitButton.setTitle(element.kind.associatedData(as: String.self), for: .normal)
-        self.submitButton.backgroundColor = appearance.tintColor
+        self.button.setTitle(element.kind.associatedData(as: String.self), for: .normal)
+        self.button.backgroundColor = appearance.tintColor
         self.defaultSetup()
     }
     
     private func defaultSetup() {
-        self.submitButton.addTarget(self, action: #selector(self.submitButtonDidTapped), for: .touchUpInside)
-        self.submitButton.layer.cornerRadius = 10
+        self.button.addTarget(self, action: #selector(self.buttonDidTapped), for: .touchUpInside)
+        self.button.layer.cornerRadius = 10
         self.setLayout()
     }
     
   
     //MARK: - Action
     
-    @objc func submitButtonDidTapped() {
+    @objc func buttonDidTapped() {
         self.formularDelegate?.formularWillSubmit()
     }
     
@@ -63,13 +63,13 @@ final class AFSubmitCell: AFSubmitableCell {
     //MARK: - Layout
     
     private func setLayout() {
-        self.addSubview(self.submitButton)
+        self.addSubview(self.button)
         
         
         
-        self.submitButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        self.submitButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        self.submitButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        self.submitButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        self.button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
     }
 }
