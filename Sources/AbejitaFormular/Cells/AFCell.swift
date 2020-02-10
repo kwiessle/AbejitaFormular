@@ -56,6 +56,7 @@ public extension AFInputableCellDelegate {
                 self.textField.isSecureTextEntry = false
         }
     }
+    
 }
 
 public protocol AFSubmitableCellDelegate {

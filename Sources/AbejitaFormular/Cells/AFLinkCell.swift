@@ -15,11 +15,18 @@ class AFLinkCell: AFCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Link", for: .normal)
         button.backgroundColor = .clear
+        button.titleLabel?.numberOfLines = 0
+        
         return button
     }()
     
     
-    var height: CGFloat { return 50 }
+    var height: CGFloat {
+        let formularAppearance = self.appearance ?? .default
+        let containerWidth = formularAppearance.contentFrame.width - formularAppearance.contentInsets.horizontalInsets
+        let buttonHeight = self.linkButton.height(forConstrainedWidth: containerWidth - self.contentAnchors.horizontalInsets)
+        return buttonHeight + self.contentAnchors.verticalInsets
+    }
     
     var formularElement: AFElement?
     
@@ -67,7 +74,7 @@ class AFLinkCell: AFCell {
     }
     
     private var contentAnchors: UIEdgeInsets {
-        return self.formularElement?.margin ?? .init(top: 0, left: 20, bottom: 0, right: 20)
+        return self.formularElement?.margin ?? .init(top: 10, left: 20, bottom: 10, right: 20)
     }
     
     private func setLayout() {
