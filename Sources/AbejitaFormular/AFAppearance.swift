@@ -10,13 +10,13 @@ import UIKit
 
 
 public struct AFAppearance {
-    var backgroundColor: UIColor
-    var textColor: UIColor
-    var tintColor: UIColor
-    var contentFrame: CGRect = UIScreen.main.bounds
-    var contentInsets: UIEdgeInsets
-    var gradient: CAGradientLayer?
-    var foregroundColor: UIColor = UIColor(white: 0, alpha: 0.3)
+    public var backgroundColor: UIColor
+    public var textColor: UIColor
+    public var tintColor: UIColor
+    public var contentFrame: CGRect = UIScreen.main.bounds
+    public var contentInsets: UIEdgeInsets
+    public var gradient: CAGradientLayer?
+    public var foregroundColor: UIColor = UIColor(white: 0, alpha: 0.3)
     
     public init (backgroundColor: UIColor, textColor: UIColor, tintColor: UIColor, contentInsets: UIEdgeInsets = .zero, gradient: CAGradientLayer? = nil) {
         self.backgroundColor = backgroundColor
