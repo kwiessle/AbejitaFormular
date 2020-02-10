@@ -74,25 +74,7 @@ final class AFInputCell: AFInputableCell {
         self.textField.resignFirstResponder()
     }
     
-    private func setupTextField(for type: AFInputType) {
-        switch type {
-            case .email:
-                self.textField.keyboardType = .emailAddress
-                self.textField.isSecureTextEntry = false
-            case .password:
-                self.textField.keyboardType = .default
-                self.textField.isSecureTextEntry = true
-            case .number:
-                self.textField.keyboardType = .numberPad
-                self.textField.isSecureTextEntry = false
-            case .text:
-                self.textField.keyboardType = .default
-                self.textField.isSecureTextEntry = false
-            case .phoneNumber:
-                self.textField.keyboardType = .phonePad
-                self.textField.isSecureTextEntry = false
-        }
-    }
+ 
     
     
     //MARK: - Action
