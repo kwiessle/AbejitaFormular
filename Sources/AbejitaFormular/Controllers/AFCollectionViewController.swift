@@ -42,7 +42,7 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         collectionView.contentInset = self.formularAppearance.contentInsets
         collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = self.showScrollIndicator
-        self.registerFormularCells(self.collectionView, for: self.formular.elements)
+        AFTools.registerFormularCells(self.collectionView, for: self.formular.elements)
     }
     
     
@@ -160,14 +160,5 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         }
     }
     
-    private func registerFormularCells(_ collectionView: UICollectionView, for elements: [AFElement]) {
-        elements.forEach { element in
-            let cell = element.kind.associatedCell.self
-            if let xibCell = cell as? AFXibCell.Type {
-                collectionView.register(xibCell)
-            } else {
-                collectionView.register(cell)
-            }
-        }
-    }
+   
 }
