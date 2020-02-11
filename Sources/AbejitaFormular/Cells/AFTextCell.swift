@@ -60,7 +60,7 @@ final class AFTextCell: AFCell {
     //MARK: - Layout
     
     private var contentAnchors: UIEdgeInsets {
-        return .init(top: 20, left: 20, bottom: 20, right: 20)
+        return self.formularElement?.margin ?? .init(top: 20, left: 20, bottom: 20, right: 20)
     }
     
     private func setLayout() {
