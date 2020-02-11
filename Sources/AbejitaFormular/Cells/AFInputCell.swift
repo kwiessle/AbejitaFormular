@@ -65,7 +65,9 @@ final class AFInputCell: AFInputableCell {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneBarButtonDidTapped))
+        doneButton.tintColor = UIColor(red:0.23, green:0.47, blue:0.95, alpha:1.0)
         toolBar.setItems([doneButton], animated: true)
+        
         self.textField.inputAccessoryView = toolBar
     }
     
