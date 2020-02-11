@@ -42,9 +42,11 @@ public extension AFInputableCellDelegate {
             case .email:
                 self.textField.keyboardType = .emailAddress
                 self.textField.isSecureTextEntry = false
+                self.textField.autocapitalizationType = .none
             case .password:
                 self.textField.keyboardType = .default
                 self.textField.isSecureTextEntry = true
+                self.textField.autocapitalizationType = .none
             case .number:
                 self.textField.keyboardType = .numberPad
                 self.textField.isSecureTextEntry = false
