@@ -14,7 +14,7 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
     
     public var formular = F()
     
-   
+    public var completion: (()->())?
     
     
     //MARK: - Initializers
@@ -43,6 +43,15 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = self.showScrollIndicator
         AFTools.registerFormularCells(self.collectionView, for: self.formular.elements)
+    }
+    
+    
+    
+    //MARK: - UIViewController Life Cycle
+    
+    open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        self.completion?()
     }
     
     
@@ -82,7 +91,9 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         //Should be overrided by inherited class
     }
     
-    
+    public func reloadFormular() {
+        self.collectionView.reloadData()
+    }
     
     
     //MARK: - Formular Appearance Delegate
@@ -107,7 +118,7 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
     }
     
     
-    
+
     
     
     //MARK: - Formular Settings Delegate
@@ -159,6 +170,7 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
             }
         }
     }
+    
     
    
 }

@@ -12,7 +12,14 @@ public typealias AFDelegate = AFEventDelegate &
                               AFActionDelegate &
                               AFAppearanceDelegate &
                               AFDataDelegate &
-                              AFSettingsDelegate
+                              AFSettingsDelegate &
+                              AFController
+
+
+public protocol AFController {
+    var completion: (()->())? { get set }
+}
+
 
 
 public protocol AFDataDelegate {
@@ -24,6 +31,7 @@ public protocol AFDataDelegate {
 public protocol AFEventDelegate {
     func formular(focusNextControlAfter element: AFElement)
     func formularPerformAction(withReuseIdentifer identifier: String)
+    func reloadFormular()
 }
 
 
