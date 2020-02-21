@@ -79,7 +79,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
         }
     }
     
-    open func formularPerformAction(withReuseIdentifer: String) {
+    open func formularPerformAction(withReuseIdentifer identifier: String, data: Any?) {
         //Should be overrided by inherited class
     }
     

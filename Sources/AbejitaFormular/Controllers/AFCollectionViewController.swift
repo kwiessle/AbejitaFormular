@@ -87,9 +87,10 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         }
     }
     
-    open func formularPerformAction(withReuseIdentifer: String) {
+    open func formularPerformAction(withReuseIdentifer identifier: String, data: Any?) {
         //Should be overrided by inherited class
     }
+    
     
     public func reloadFormular() {
         self.collectionView.reloadData()

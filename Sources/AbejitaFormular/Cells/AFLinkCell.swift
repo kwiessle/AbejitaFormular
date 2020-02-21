@@ -64,7 +64,7 @@ class AFLinkCell: AFCell {
     
     @objc func linkButtonDidTapped() {
         if let identifier = self.formularElement?.reuseIdentifier {
-            self.formularDelegate?.formularPerformAction(withReuseIdentifer: identifier)
+            self.formularDelegate?.formularPerformAction(withReuseIdentifer: identifier, data: nil)
         }
     }
     
