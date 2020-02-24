@@ -33,6 +33,10 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         self.formularShouldEnterEditing ? self.formularFocusFirstResponder() : ()
     }
     
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
     private func setupFormular(withCollectionView collectionView: UICollectionView) {
         if let gradient = self.formularAppearance.gradient {
             collectionView.addBackgroundGradient(gradient)

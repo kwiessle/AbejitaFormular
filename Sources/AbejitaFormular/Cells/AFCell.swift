@@ -50,12 +50,15 @@ public extension AFInputableCellDelegate {
             case .number:
                 self.textField.keyboardType = .numberPad
                 self.textField.isSecureTextEntry = false
+                self.textField.autocapitalizationType = .none
             case .text:
                 self.textField.keyboardType = .default
                 self.textField.isSecureTextEntry = false
-            case .phoneNumber:
+                self.textField.autocapitalizationType = .sentences
+             case .phoneNumber:
                 self.textField.keyboardType = .phonePad
                 self.textField.isSecureTextEntry = false
+                self.textField.autocapitalizationType = .none
         }
     }
     
