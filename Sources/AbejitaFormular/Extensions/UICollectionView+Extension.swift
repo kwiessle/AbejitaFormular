@@ -11,15 +11,15 @@ import UIKit
 public extension UICollectionView {
  
     func register(_ formularCell: AFCell.Type) {
-        self.register(formularCell, forCellWithReuseIdentifier: formularCell.identifier)
+        self.register(formularCell, forCellWithReuseIdentifier: formularCell.xibIdentifier)
     }
     
     func register(_ AFXibCell: AFXibCell.Type) {
-        self.register(AFXibCell.nib, forCellWithReuseIdentifier: AFXibCell.identifier)
+        self.register(AFXibCell.nib, forCellWithReuseIdentifier: AFXibCell.xibIdentifier)
     }
     
     func dequeueCell<C: AFCell>(as formularCell: C.Type, at indexPath: IndexPath) -> C {
-        return self.dequeueReusableCell(withReuseIdentifier: C.identifier, for: indexPath) as! C
+        return self.dequeueReusableCell(withReuseIdentifier: C.xibIdentifier, for: indexPath) as! C
     }
     
     func getFormularCell<C: AFCell>(at index: Int, as type: C.Type) -> C? {

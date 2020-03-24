@@ -14,7 +14,7 @@ public typealias AnyAFCell = UICollectionViewCell & AFCellAttributes
 
 public typealias AFCell =  AnyAFCell
 
-public typealias AFXibCell = AnyAFCell & NibRegistrableCell
+public typealias AFXibCell = AnyAFCell & XibRegistrableCell
 
 public typealias AFInputableCell = AnyAFCell & AFInputableCellDelegate & UITextFieldDelegate
 
@@ -70,13 +70,13 @@ public protocol AFSubmitableCellDelegate {
 
 
 
-public protocol NibRegistrableCell {}
+public protocol XibRegistrableCell {}
 
-public extension NibRegistrableCell {
+public extension XibRegistrableCell {
     
-    static var nibName: String { return String(describing: Self.self) }
+    static var xibName: String { return String(describing: Self.self) }
     
-    static var nib: UINib { return UINib(nibName: self.nibName, bundle: Bundle(for: Self.self as! AnyClass)) }
+    static var nib: UINib { return UINib(nibName: self.xibName, bundle: Bundle(for: Self.self as! AnyClass)) }
     
     static func instanciateFromNib() -> Self {
         return self.nib.instantiate(withOwner: nil, options: nil).first as! Self
@@ -98,7 +98,7 @@ public protocol AFCellAttributes: AnyObject {
 
 public extension AFCellAttributes {
 
-    static var identifier: String { return "\(String(describing: Self.self))" }
+    static var xibIdentifier: String { return "\(String(describing: Self.self))" }
     
 //    func setup(element: AFElement, delegate: AFDelegate?, _ appearance: AFAppearance) {
 //        self.formularElement = element
@@ -107,7 +107,7 @@ public extension AFCellAttributes {
 //    }
     
     static func getCell(_ collectionView: UICollectionView, at indexPath: IndexPath, for element: AFElement, delegate: AFDelegate?, withApparence appearance: AFAppearance) -> AFCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.identifier, for: indexPath) as! AFCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Self.xibIdentifier, for: indexPath) as! AFCell
         cell.setup(element: element, delegate: delegate, appearance)
         return cell
     }

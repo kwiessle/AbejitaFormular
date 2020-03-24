@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class AFElement: Equatable {
+open class AFElement: Equatable {
     
     public let kind: AFElementKind
     public let keyPath: AnyKeyPath?

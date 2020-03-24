@@ -33,6 +33,12 @@ public extension AbejitaFormular {
         return nextIndex < self.elements.count ? nextIndex : nil
     }
     
+    func indexBefore(_ element: AFElement) -> Int? {
+        guard let index = self.indexOf(element) else { return nil }
+        let previousIndex = index - 1
+        return previousIndex >= 0 ? previousIndex : nil
+    }
+    
     var isValid: Bool {
         return true
     }
