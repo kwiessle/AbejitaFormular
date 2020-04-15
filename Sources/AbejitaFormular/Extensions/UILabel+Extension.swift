@@ -15,4 +15,9 @@ public extension UILabel {
         return text.height(withConstrainedWidth: width, font: self.font)
     }
     
+    func width(forConstrainedHeight height: CGFloat) -> CGFloat {
+        guard let text = self.text else { return 0 }
+        return text.width(withConstrainedHeight: height, font: self.font)
+    }
+    
 }
