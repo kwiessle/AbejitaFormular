@@ -9,6 +9,18 @@
 import UIKit
 
 public extension UICollectionView {
+    
+    enum FlowLayoutEstimatedSize {
+        case desactivate
+        case activate(size: CGSize)
+        
+        var size: CGSize {
+            switch self {
+                case .desactivate: return .zero
+                case .activate(size: let size): return size
+            }
+        }
+    }
  
     func register(_ formularCell: AFCell.Type) {
         self.register(formularCell, forCellWithReuseIdentifier: formularCell.xibIdentifier)
@@ -19,18 +31,24 @@ public extension UICollectionView {
     }
     
     func dequeueCell<C: AFCell>(as formularCell: C.Type, at indexPath: IndexPath) -> C {
-        return self.dequeueReusableCell(withReuseIdentifier: C.xibIdentifier, for: indexPath) as! C
+        return self.dequeueReusableCell(withReuseIdentifier: C.xibIdentifier, for:  indexPath) as! C
     }
     
     func getFormularCell<C: AFCell>(at index: Int, as type: C.Type) -> C? {
         return self.cellForItem(at: IndexPath(item: 0, section: index)) as? C
     }
     
-   func addBackgroundGradient(_ gradient: CAGradientLayer) {
+    func addBackgroundGradient(_ gradient: CAGradientLayer) {
         let collectionViewBackgroundView = UIView()
         gradient.frame.size = self.frame.size
         self.backgroundView = collectionViewBackgroundView
         self.backgroundView?.layer.addSublayer(gradient)
-   }
+    }
+    
+    func estimatedItemSizeIfPossible(_ estimation: FlowLayoutEstimatedSize) {
+        guard let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.estimatedItemSize = estimation.size
+    }
+    
 }
 

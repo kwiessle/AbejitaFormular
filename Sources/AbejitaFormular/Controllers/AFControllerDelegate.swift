@@ -21,7 +21,6 @@ public protocol AFController {
 }
 
 
-
 public protocol AFDataDelegate {
     func formular<T>(set value: T, to element: AFElement)
     func formulat<T>(getValueOf element: AFElement, as type: T.Type) -> T?

@@ -48,6 +48,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
         self.collectionView.contentInset = self.formularAppearance.contentInsets
         self.collectionView.delegate = self
         self.collectionView.showsVerticalScrollIndicator = self.showScrollIndicator
+        self.collectionView.estimatedItemSizeIfPossible(.desactivate)
         AFTools.registerFormularCells(self.collectionView, for: self.formular.elements)
     }
     

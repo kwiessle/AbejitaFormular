@@ -32,6 +32,8 @@ public enum AFInputType {
 
 
 
+
+
 public protocol AFInputableCellDelegate  {
     var textField: UITextField! { get }
 }
