@@ -17,10 +17,12 @@ final class AFSubmitCell: AFSubmitableCell {
     //MARK: - Outlet
     
     var button: UIButton! = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .red
         button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.6), for: .highlighted)
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.6), for: .selected)
         return button
     }()
     
@@ -43,6 +45,7 @@ final class AFSubmitCell: AFSubmitableCell {
         self.formularElement = element
         self.button.setTitle(element.kind.associatedData(as: String.self), for: .normal)
         self.button.backgroundColor = appearance.tintColor
+        
         self.defaultSetup()
     }
     
@@ -51,6 +54,8 @@ final class AFSubmitCell: AFSubmitableCell {
         self.button.layer.cornerRadius = 10
         self.setLayout()
     }
+    
+    
     
   
     //MARK: - Action

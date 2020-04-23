@@ -18,7 +18,9 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     
     public var completion: (() -> ())?
   
-    
+    private var safeElements: [AFElement] {
+        return self.formular.elements.filter { $0.condition }
+    }
     
     //MARK: - Initializers
     
@@ -66,7 +68,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     //MARK: - Formular Event Delegate
     
     open func formular(focusNextControlAfter element: AFElement) {
-        guard let nextIndex = self.formular.indexAfter(element) else {
+        guard let nextIndex = self.safeElements.indexAfter(element) else {
             self.dismissKeyboard()
             return
         }
@@ -139,8 +141,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     //MARK: - UICOllectionView Delegate & DataSource
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let numberOfSection = self.formular.elements.count
-        return numberOfSection
+        return self.safeElements.count
     }
      
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -148,7 +149,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     }
      
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let element = self.formular.elements[indexPath.section]
+        let element = self.safeElements[indexPath.section]
         let cell = element.kind.associatedCell.getCell(collectionView, at: indexPath, for: element, delegate: self, withApparence: self.formularAppearance)
         return cell
     }
@@ -165,7 +166,7 @@ open class AFViewController<F: AbejitaFormular>: UIViewController, AFDelegate, U
     //MARK: - Utils
     
     public func formularFocusFirstResponder() {
-        for index in 0..<self.formular.elements.count {
+        for index in 0..<self.safeElements.count {
             let cell = self.collectionView?.cellForItem(at: IndexPath(item: 0, section: index))
             if let inputCell = cell as? AFInputableCellDelegate {
                 inputCell.textField.becomeFirstResponder()

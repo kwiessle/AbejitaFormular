@@ -19,7 +19,7 @@ final class AFInputCell: AFInputableCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor(white: 0, alpha: 0.3)
-        textField.layer.cornerRadius = 5
+        textField.layer.cornerRadius = 10
         textField.textColor = .white
         return textField
     }()
@@ -48,8 +48,9 @@ final class AFInputCell: AFInputableCell {
         )
         self.textField.backgroundColor = appearance.foregroundColor
         self.textField.clearButtonMode = .always
-        self.defaultSetup()
+        self.setLayout()
         self.setupToolBar()
+        self.defaultSetup()
     }
     
     private func defaultSetup() {
@@ -57,20 +58,19 @@ final class AFInputCell: AFInputableCell {
         if let type = self.formularElement?.kind.associatedData(as: AFInputType.self) {
             self.setupTextField(for: type)
         }
-        self.setLayout()
     }
     
     
     private func setupToolBar() {
-        let toolBar = UIToolbar()
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneBarButtonDidTapped))
         doneButton.tintColor = UIColor(red:0.23, green:0.47, blue:0.95, alpha:1.0)
+        doneButton.style = .plain
         toolBar.setItems([doneButton], animated: true)
-        
         self.textField.inputAccessoryView = toolBar
     }
-    
+
     
     @objc func doneBarButtonDidTapped() {
         self.textField.resignFirstResponder()
@@ -95,11 +95,13 @@ final class AFInputCell: AFInputableCell {
     }
     
     private func setLayout() {
-        self.addSubview(self.textField)
-        self.textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.contentAnchors.left).isActive = true
-        self.textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -self.contentAnchors.right).isActive = true
-        self.textField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.contentAnchors.top).isActive = true
-        self.textField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.contentAnchors.bottom).isActive = true
+        self.contentView.addSubview(self.textField)
+        NSLayoutConstraint.activate([
+            self.textField.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: self.contentAnchors.left),
+            self.textField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -self.contentAnchors.right),
+            self.textField.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: self.contentAnchors.top),
+            self.textField.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -self.contentAnchors.bottom)
+        ])
         let paddingView = UIView(frame: .init(x: 0, y: 0, width: 15, height: 20))
         self.textField.leftView = paddingView
         self.textField.leftViewMode = .always

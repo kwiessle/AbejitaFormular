@@ -16,6 +16,8 @@ open class AFElement: Equatable {
     public var reuseIdentifier: String?
     public var margin: UIEdgeInsets?
     
+    var condition: Bool = true
+    
     public init (kind: AFElementKind, _ keyPath: AnyKeyPath? = nil) {
         self.kind = kind
         self.keyPath = keyPath
@@ -39,5 +41,29 @@ open class AFElement: Equatable {
     public func registerIdentifer(_ reuseIdentifier: String) -> AFElement {
         self.reuseIdentifier = reuseIdentifier
         return self
+    }
+    
+    public func `if`(_ condition: Bool) -> AFElement {
+        self.condition = condition
+        return self
+    }
+    
+}
+
+public extension Array where Element == AFElement {
+    func indexOf(_ element: AFElement) -> Int? {
+        return self.firstIndex(of: element)
+    }
+    
+    func indexAfter(_ element: AFElement) -> Int? {
+        guard let index = self.indexOf(element) else { return nil }
+        let nextIndex = index + 1
+        return nextIndex < self.count ? nextIndex : nil
+    }
+
+    func indexBefore(_ element: AFElement) -> Int? {
+        guard let index = self.indexOf(element) else { return nil }
+        let previousIndex = index - 1
+        return previousIndex >= 0 ? previousIndex : nil
     }
 }
