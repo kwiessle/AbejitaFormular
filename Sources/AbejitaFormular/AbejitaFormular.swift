@@ -24,6 +24,10 @@ public extension AbejitaFormular {
     var isValid: Bool {
         return true
     }
+    
+    func getElement(forReuseIdentifier identifier: String) -> AFElement? {
+        return self.elements.first { $0.reuseIdentifier == identifier }
+    }
 }
 
 

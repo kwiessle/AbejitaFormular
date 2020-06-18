@@ -10,7 +10,7 @@ import UIKit
 
 
 
-public typealias AnyAFCell = UICollectionViewCell & AFCellAttributes
+public typealias AnyAFCell = AFCollectionViewCell & AFCellAttributes
 
 public typealias AFCell =  AnyAFCell
 
@@ -31,6 +31,10 @@ public enum AFInputType {
 }
 
 
+open class AFCollectionViewCell: UICollectionViewCell {
+    
+    open func didRecieve(_ data: Any?) {}
+}
 
 
 
@@ -113,7 +117,6 @@ public extension AFCellAttributes {
         cell.setup(element: element, delegate: delegate, appearance)
         return cell
     }
-    
 }
 
 

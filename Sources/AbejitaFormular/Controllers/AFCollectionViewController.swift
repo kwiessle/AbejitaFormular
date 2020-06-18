@@ -132,7 +132,12 @@ open class AFCollectionViewController<F: AbejitaFormular>: UICollectionViewContr
         return self.formular[keyPath: kp]
     }
     
-    
+    public func send(data: Any?, toElementWithReuseIdentifier identifier: String) {
+        guard let element = self.formular.getElement(forReuseIdentifier: identifier) else { return }
+        guard let index = self.formular.elements.indexOf(element) else { return }
+        guard let cell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: index)) as? AFCollectionViewCell else { return }
+        cell.didRecieve(data)
+    }
 
     
     
